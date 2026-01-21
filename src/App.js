@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import AuthForm from "./components/AuthForm";
+import Dashboard from "./pages/Dashboard";
+import { getToken } from "./api/api";
 
-function App() {
+export default function App() {
+  const [msg, setMsg] = useState("");
+  const [loggedIn, setLoggedIn] = useState(!!getToken());
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ padding: 20, fontFamily: "Arial" }}>
+      <h2>Student App</h2>
+      <p><b>Status:</b> {msg}</p>
+
+      {!loggedIn ? (
+        <AuthForm
+          setMsg={setMsg}
+          onLogin={() => setLoggedIn(true)}
+        />
+      ) : (
+        <Dashboard setMsg={setMsg} />
+      )}
     </div>
   );
 }
-
-export default App;
