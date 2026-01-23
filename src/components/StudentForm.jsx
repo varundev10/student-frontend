@@ -27,7 +27,7 @@ export default function StudentForm({ onAdded, setMsg }) {
       <input value={course} onChange={(e) => setCourse(e.target.value)} placeholder="Course" />
       <br /><br />
 
-      <button onClick={addStudent}>Add</button>
+      <button className="btn-primary" onClick={addStudent}>Add</button>
     </div>
   );
 }

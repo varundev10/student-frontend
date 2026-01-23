@@ -1,38 +1,140 @@
-.App {
+/* ===== Centered Card ===== */
+.container {
+  background: #1e1e1e;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+  width: 380px;
+  margin: auto;
+}
+
+/* ===== Headings ===== */
+.container h1 {
   text-align: center;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+  font-weight: 600;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* ===== Inputs ===== */
+.container input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  display: inline;
+  border: 2px solid #444;        /* visible border */
+  border-radius: 8px;            /* rounded corners */
+  background: #1e1e1e;           /* dark background */
+  color: #eaeaea;                /* light text */
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.container input:focus {
+  border-color: #00c6ff;         /* bright blue border on focus */
+  box-shadow: 0 0 8px rgba(0, 198, 255, 0.6); /* glowing effect */
+  background: #2a2a2a;           /* slightly lighter background */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* ===== Primary Form Button ===== */
+.button-primary {
+  width: auto;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, #ff6a00, #ee0979);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.button-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(238, 9, 121, 0.5);
+}
+
+/* ===== Student List ===== */
+.student-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+}
+
+.student-list li {
+  background: #1e1e1e;
+  padding: 1rem;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  transition: box-shadow 0.3s ease;
 }
 
-.App-link {
-  color: #61dafb;
+.student-list li:hover {
+  box-shadow: 0 6px 16px rgba(255, 255, 255, 0.1);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Student info text */
+.course-badge { display: inline-block; padding: 0.3rem 0.6rem; border-radius: 6px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; margin-left: 8px; color: #fff; }
+
+/* ===== Action Buttons (side by side) ===== */
+.student-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.student-actions button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #fff;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+/* Edit button */
+.edit-btn {
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+}
+
+.edit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 114, 255, 0.5);
+}
+
+/* Delete button */
+.delete-btn {
+  background: linear-gradient(135deg, #ff416c, #ff4b2b);
+}
+
+.delete-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(255, 65, 108, 0.5);
+}
+
+/* ===== Mobile Responsiveness ===== */
+@media (max-width: 600px) {
+  body {
+    padding: 1rem;
   }
-  to {
-    transform: rotate(360deg);
+
+  .container {
+    width: 100%;
+    padding: 1rem;
+    margin: 0;
+  }
+
+  .button-primary {
+    padding: 0.75rem 1rem; /* Increase padding for better touch targets */
+    min-height: 44px; /* Ensure minimum touch target size */
+  }
+
+  .container input {
+    padding: 0.75rem; /* Ensure inputs are touch-friendly */
   }
 }

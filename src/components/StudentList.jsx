@@ -8,16 +8,16 @@ export default function StudentList({ students, onEdit, onDelete }) {
       ) : (
         <ul>
           {students.map((s) => (
-            <li key={s.id} style={{ marginBottom: 10 }}>
-              #{s.id} - {s.name} ({s.course})
-
-              <button style={{ marginLeft: 10 }} onClick={() => onEdit(s)}>
+            <li key={s.id}>
+                <span className="course-badge">#{s.id} - {s.name} ({s.course})</span>
+              <div className="student-actions">
+              <button  className="edit-btn" onClick={() => onEdit(s)}>
                 Edit
               </button>
 
-              <button style={{ marginLeft: 10 }} onClick={() => onDelete(s.id)}>
+              <button  className="delete-btn"  onClick={() => onDelete(s.id)}>
                 Delete
-              </button>
+              </button></div>
             </li>
           ))}
         </ul>

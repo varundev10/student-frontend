@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { clearToken } from "../api/api";
-import { deleteStudent, fetchStudents, updateStudent } from "../api/studentApi";
+import { deleteStudent, fetchStudents, updateStudent, createStudent } from "../api/studentApi";
 
-import StudentForm from "../components/StudentForm";
 import StudentList from "../components/StudentList";
 
 export default function Dashboard({ setMsg }) {
@@ -12,6 +11,9 @@ export default function Dashboard({ setMsg }) {
   const [editName, setEditName] = useState("");
   const [editCourse, setEditCourse] = useState("");
 
+  const [addName, setAddName] = useState("");
+  const [addCourse, setAddCourse] = useState("");
+
   async function loadStudents() {
     setMsg("Loading students...");
     const { ok, data } = await fetchStudents();
@@ -20,6 +22,19 @@ export default function Dashboard({ setMsg }) {
 
     setStudents(data);
     setMsg("Students loaded ✅");
+  }
+
+  async function addStudent() {
+    setMsg("Adding student...");
+
+    const { ok, data } = await createStudent({ name: addName, course: addCourse });
+
+    if (!ok) return setMsg(data.message || "Failed to add student");
+
+    setMsg("Student added ✅");
+    setAddName("");
+    setAddCourse("");
+    loadStudents();
   }
 
   useEffect(() => {
@@ -56,14 +71,20 @@ export default function Dashboard({ setMsg }) {
   }
 
   return (
-    <div>
-      <button onClick={logout}>Logout</button>
+    <div className="container">
+      <button className="button-primary" style={{ position: 'fixed', top: '30px', right: '30px', width: 'auto' }} onClick={logout}>Logout</button>
 
-      <StudentForm onAdded={loadStudents} setMsg={setMsg} />
+      <h3>Add Student</h3>
 
-      <button style={{ marginTop: 20 }} onClick={loadStudents}>
-        Refresh Students
-      </button>
+      <input value={addName} onChange={(e) => setAddName(e.target.value)} placeholder="Student name" />
+      <br /><br />
+      <input value={addCourse} onChange={(e) => setAddCourse(e.target.value)} placeholder="Course" />
+      <br /><br />
+
+      <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+        <button className="button-primary" onClick={addStudent}>Add</button>
+        <button className="button-primary" onClick={loadStudents}>Refresh Students</button>
+      </div>
 
       <StudentList
         students={students}
@@ -84,17 +105,18 @@ export default function Dashboard({ setMsg }) {
           <input value={editCourse} onChange={(e) => setEditCourse(e.target.value)} placeholder="Course" />
           <br /><br />
 
-          <button onClick={handleUpdate}>Update</button>
-          <button
-            style={{ marginLeft: 10 }}
-            onClick={() => {
-              setEditId(null);
-              setEditName("");
-              setEditCourse("");
-            }}
-          >
-            Cancel
-          </button>
+          <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+            <button onClick={handleUpdate}>Update</button>
+            <button
+              onClick={() => {
+                setEditId(null);
+                setEditName("");
+                setEditCourse("");
+              }}
+            >
+              Cancel
+            </button>
+          </div>
         </div>
       )}
     </div>
