@@ -89,6 +89,9 @@ Varun Dev
 GitHub: https://github.com/varundev10
 
 <img width="1880" height="916" alt="student project" src="https://github.com/user-attachments/assets/58674689-b232-4663-8869-569af9cb27ca" />
-![WhatsApp Image 2026-01-23 at 8 17 49 PM](https://github.com/user-attachments/assets/47cec8d6-fb2e-4a64-bd8a-f35f7ff36f14)
+.
+<img width="1880" height="916" alt="student project" src="https://github.com/user-attachments/assets/9dda9187-bd65-40b6-bc27-3dfb1bfc2514" />
+
+
 
 
