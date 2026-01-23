@@ -14,6 +14,9 @@ export default function Dashboard({ setMsg }) {
   const [addName, setAddName] = useState("");
   const [addCourse, setAddCourse] = useState("");
 
+  const Name_REGEX = /^[a-zA-Z_ ]{2,30}$/;
+  const Course_REGEX = /^[a-zA-Z0-9_ ]{2,50}$/;
+
   async function loadStudents() {
     setMsg("Loading students...");
     const { ok, data } = await fetchStudents();
@@ -25,6 +28,13 @@ export default function Dashboard({ setMsg }) {
   }
 
   async function addStudent() {
+    if (!Name_REGEX.test(addName.trim())) {
+      return setMsg("Name must be 2-30 letters, spaces, or underscores only");
+    }
+    if (!Course_REGEX.test(addCourse.trim())) {
+      return setMsg("Course must be 2-50 characters, letters, numbers, spaces, or underscores only");
+    }
+
     setMsg("Adding student...");
 
     const { ok, data } = await createStudent({ name: addName, course: addCourse });
